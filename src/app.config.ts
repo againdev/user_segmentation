@@ -33,6 +33,18 @@ export class AppConfig {
 
   @IsString()
   readonly DATABASE_URL: string;
+
+  @IsString()
+  readonly ACCESS_TOKEN_SECRET: string;
+
+  @IsString()
+  readonly REFRESH_TOKEN_SECRET: string;
+
+  @IsString()
+  readonly EXPIRES_IN_ACCESS_TOKEN: string;
+
+  @IsString()
+  readonly EXPIRES_IN_REFRESH_TOKEN: string;
 }
 
 export function validateAppConfig(config: Record<string, unknown>) {
