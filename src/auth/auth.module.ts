@@ -10,7 +10,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }), 
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -23,10 +23,10 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
     }),
   ],
   providers: [
-    AuthService, 
-    PrismaService, 
-    JwtService, 
-    JwtStrategy, 
+    AuthService,
+    PrismaService,
+    JwtService,
+    JwtStrategy,
     JwtRefreshStrategy,
   ],
   controllers: [AuthController],

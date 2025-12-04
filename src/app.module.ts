@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { validateAppConfig } from './app.config';
 import { AuthModule } from './auth/auth.module';
+import { SegmentsModule } from './segments/segments.module';
+import { UsersModule } from './users/users.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtRolesGuard } from './auth/guards/jwt-roles.guard';
 
 @Module({
   imports: [
@@ -12,8 +16,16 @@ import { AuthModule } from './auth/auth.module';
       validate: validateAppConfig,
     }),
     AuthModule,
+    SegmentsModule,
+    UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtRolesGuard,
+    },
+  ],
 })
 export class AppModule {}
